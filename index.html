@@ -1,1 +1,73 @@
-<!DOCTYPE html>\n<html lang=\"hi\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Animated Teddy Bear Gallery</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }\n        #gallery { display: flex; flex-wrap: wrap; }\n        .gallery-item { width: 200px; margin: 10px; }\n        .confetti { position: absolute; pointer-events: none; }\n    </style>\n</head>\n<body>\n    <h1>टेडी बियर गैलरी</h1>\n    <div id=\"password-lock\">\n        <label for=\"password\">पासवर्ड दर्ज करें:</label>\n        <input type=\"password\" id=\"password\">\n        <button onclick=\"checkPassword()\">सबमिट करें</button>\n    </div>\n    <div id=\"gallery\"></div>\n    <script>\n        const correctPassword = '251225';\n        const gallery = document.getElementById('gallery');\n        const teddyBearImage = 'path_to_teddy_bear_image.gif'; // Replace with the actual image path\n\n        function checkPassword() {\n            const userPassword = document.getElementById('password').value;\n            if (userPassword === correctPassword) {\n                document.getElementById('password-lock').style.display = 'none';\n                createGallery();\n                startConfetti();\n            } else {\n                alert('गलत पासवर्ड!');\n            }\n        }\n\n        function createGallery() {\n            for (let i = 1; i <= 15; i++) {\n                const item = document.createElement('div');\n                item.className = 'gallery-item';\n                item.innerHTML = `\n                    <img src=\"path_to_image_${i}.jpg\" alt=\"Image ${i}\">\n                    <p>यह हिंदी में विवरण है ${i}</p>\n                `;\n                gallery.appendChild(item);\n            }\n        }\n\n        function startConfetti() {\n            // Add confetti animation logic here\n            console.log('Confetti animation started!');  // Placeholder for actual confetti logic\n        }\n    </script>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Teddy Bear Website</title>
+    <style>
+        body {
+            background-color: #ffccff;
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #d5006d;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .image {
+            width: 100%;
+            height: auto;
+        }
+        .lock-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 204, 255, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .locked {
+            display: flex;
+        }
+        #teddy {
+            width: 200px;
+        }
+        /* Add animations, etc. */
+    </style>
+</head>
+<body>
+    <div id="lockScreen" class="lock-screen">
+        <input type="password" id="password" placeholder="Enter password" />
+        <button onclick="unlock()">Unlock</button>
+    </div>
+    <h1>Welcome to My Teddy Bear Website</h1>
+    <button id="noButton">No</button>
+    <button id="yesButton">Yes</button>
+    <div id="teddy"></div>
+    <div class="gallery">
+        <!-- Gallery images here -->
+    </div>
+
+    <script>
+        document.getElementById('noButton').onclick = function() {
+            // Crying teddy bear animation
+        };
+        document.getElementById('yesButton').onclick = function() {
+            // Dancing teddy bear animation
+        };
+        function unlock() {
+            var input = document.getElementById('password').value;
+            if (input === '251225') {
+                document.getElementById('lockScreen').classList.remove('locked');
+            }
+        }
+        // Add confetti and heart animations
+    </script>
+</body>
+</html>
