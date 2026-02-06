@@ -3,59 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maajhi Janhavi</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <title>मेरी गैलरी</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            overflow: hidden;
+        }
+        .header {
+            text-align: center;
+            margin: 20px;
+            font-size: 24px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 30%;
+            margin: 10px;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .password-lock {
+            text-align: center;
+            margin: 50px;
+        }
+        .password-input {
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="teddy-bear" class="animated"></div>
-    <div id="confetti"></div>
-    <div id="floating-hearts"></div>
-    <div id="sparkles"></div>
-
-    <header>
-        <h1>माझी जान्हवी</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">होम</a></li>
-                <li><a href="#gallery">गेलरी</a></li>
-                <li><a href="#about">बद्दल</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="gallery">
-            <h2>गेलरी</h2>
-            <div class="gallery-item"> 
-                <img src="image1.jpg" alt="Image 1">
-                <p>पहली छवि विवरण हिंदी में</p>
-            </div>
-            <div class="gallery-item"> 
-                <img src="image2.jpg" alt="Image 2">
-                <p>दूसरी छवि विवरण हिंदी में</p>
-            </div>
-            <!-- Add more gallery items as needed -->
-        </section>
-        <section id="about">
-            <h2>बद्दल</h2>
-            <p>यह मेरी वेबसाइट के बारे में जानकारी है। यहाँ 여러분 को मजेदार और रोचक सामग्री मिलेगी।</p>
-        </section>
-    </main>
-
+    <div class="header">मेरी गैलरी</div>
+    <div class="confetti" id="confettiContainer"></div>
+    <div class="gallery">
+        <!-- Placeholder for 15 image galleries with descriptions -->
+        <div><img src="image1.jpg" alt="Description 1"><p>विवरण 1</p></div>
+        <div><img src="image2.jpg" alt="Description 2"><p>विवरण 2</p></div>
+        <!-- Add additional images and descriptions up to 15 -->
+    </div>
+    <div class="password-lock">
+        <input type="password" class="password-input" id="password" placeholder="पासवर्ड दर्ज करें"><br>
+        <button onclick="checkPassword()">जांचें</button>
+    </div>
     <script>
-        // JavaScript for animations
-        gsap.from("#teddy-bear", {duration: 2, y: -100, opacity: 0});
-        // Initialize other animations here
-    </script>
-    <style>
-        /* Add necessary CSS styling here */ 
-        body {
-            background-color: #f0f8ff;
-            animation: fadeIn 2s;
+        function createConfetti() {
+            const colors = ['#FFC700', '#FF4A00', '#00C2E0', '#FF6F81', '#7D5BFF'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confetti.style.opacity = Math.random();
+                document.getElementById('confettiContainer').appendChild(confetti);
+            }
         }
-        /* Add more styling for elements here */
-    </style>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === 'secret') {
+                alert('सही पासवर्ड!');
+            } else {
+                alert('गलत पासवर्ड!');
+            }
+        }
+        createConfetti();
+    </script>
 </body>
 </html>
