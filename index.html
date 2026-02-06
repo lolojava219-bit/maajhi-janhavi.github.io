@@ -3,71 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Teddy Bear Website</title>
+    <title>Valentine's Day Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body {
-            background-color: #ffccff;
-            font-family: Arial, sans-serif;
+        /* Styles for animations and layout */
+        body { 
+            text-align: center; 
+            background-color: #fff0f5; 
+            overflow: hidden; 
         }
-        h1, h2 {
-            color: #d5006d;
+        
+        .teddy-bear { 
+            width: 100px; 
+            position: relative; 
+            animation: dance 1s infinite alternate; 
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+
+        @keyframes dance {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
         }
-        .image {
-            width: 100%;
-            height: auto;
+
+        .heart, .confetti { 
+            position: absolute; 
+            display: none; 
         }
-        .lock-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 204, 255, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .locked {
-            display: flex;
-        }
-        #teddy {
-            width: 200px;
-        }
-        /* Add animations, etc. */
+        
     </style>
 </head>
 <body>
-    <div id="lockScreen" class="lock-screen">
-        <input type="password" id="password" placeholder="Enter password" />
-        <button onclick="unlock()">Unlock</button>
-    </div>
-    <h1>Welcome to My Teddy Bear Website</h1>
-    <button id="noButton">No</button>
-    <button id="yesButton">Yes</button>
-    <div id="teddy"></div>
-    <div class="gallery">
-        <!-- Gallery images here -->
-    </div>
 
-    <script>
-        document.getElementById('noButton').onclick = function() {
-            // Crying teddy bear animation
-        };
-        document.getElementById('yesButton').onclick = function() {
-            // Dancing teddy bear animation
-        };
-        function unlock() {
-            var input = document.getElementById('password').value;
-            if (input === '251225') {
-                document.getElementById('lockScreen').classList.remove('locked');
-            }
+<div id="passwordLock">
+    <h1>Enter Password</h1>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">Submit</button>
+</div>
+
+<div id="mainContent" style="display:none;">
+    <h1>Welcome to the Valentine's Day Gallery</h1>
+    <div class="gallery">
+        <!-- Placeholder for 15 pages of Valentine messages -->
+        <div class="page" id="page1">Page 1: Happy Valentine's Day! <span lang="hi">वेलेंटाइन डे मुबारक!</span></div>
+        <!-- Repeat for other pages -->
+    </div>
+    <img class="teddy-bear" src="teddy-dance.gif" id="teddy" />
+
+    <div class="confettis"></div>
+</div>
+
+<script>
+    function checkPassword() {
+        const input = document.getElementById('password').value;
+        if (input === '251225') {
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('passwordLock').style.display = 'none';
+            startConfetti();
+        } else {
+            document.getElementById('teddy').src = 'teddy-cry.gif'; // Crying teddy bear
         }
-        // Add confetti and heart animations
-    </script>
+    }
+
+    function startConfetti() {
+        // Implementation for confetti and heart floating effects
+        // Can use a confetti library or custom animation
+    }
+</script>
+
 </body>
 </html>
