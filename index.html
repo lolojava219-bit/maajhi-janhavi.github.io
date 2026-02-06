@@ -5,47 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maajhi Janhavi</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <h1>स्वागत है Maajhi Janhavi में</h1> <!-- Welcome to Maajhi Janhavi -->
-    <div id="particle-container"></div>
-    <div id="gallery">
-        <h2>गैलरी</h2> <!-- Gallery -->
-        <input type="file" id="upload" multiple />
-        <div id="photos"></div>
-    </div>
-    <div id="teddy-dance">
-        <img src="teddy_bear.gif" alt="Dancing Teddy Bear" id="teddy">
-    </div>
+    <div id="teddy-bear" class="animated"></div>
+    <div id="confetti"></div>
+    <div id="floating-hearts"></div>
+    <div id="sparkles"></div>
+
+    <header>
+        <h1>माझी जान्हवी</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">होम</a></li>
+                <li><a href="#gallery">गेलरी</a></li>
+                <li><a href="#about">बद्दल</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery">
+            <h2>गेलरी</h2>
+            <div class="gallery-item"> 
+                <img src="image1.jpg" alt="Image 1">
+                <p>पहली छवि विवरण हिंदी में</p>
+            </div>
+            <div class="gallery-item"> 
+                <img src="image2.jpg" alt="Image 2">
+                <p>दूसरी छवि विवरण हिंदी में</p>
+            </div>
+            <!-- Add more gallery items as needed -->
+        </section>
+        <section id="about">
+            <h2>बद्दल</h2>
+            <p>यह मेरी वेबसाइट के बारे में जानकारी है। यहाँ 여러분 को मजेदार और रोचक सामग्री मिलेगी।</p>
+        </section>
+    </main>
+
     <script>
-        var particles = Particles.init({
-            selector: '#particle-container',
-            color: '#ffffff',
-            connectParticles: true,
-            responsiveness: 1,
-        });
-
-        document.getElementById('upload').addEventListener('change', function(event) {
-            const photosContainer = document.getElementById('photos');
-            photosContainer.innerHTML = '';
-            for (const file of event.target.files) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    photosContainer.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Teddy bear animation logic here
-        function startTeddyDance() {
-            const teddy = document.getElementById('teddy');
-            teddy.classList.add('dance');
-        }
-        setTimeout(startTeddyDance, 1000);
+        // JavaScript for animations
+        gsap.from("#teddy-bear", {duration: 2, y: -100, opacity: 0});
+        // Initialize other animations here
     </script>
+    <style>
+        /* Add necessary CSS styling here */ 
+        body {
+            background-color: #f0f8ff;
+            animation: fadeIn 2s;
+        }
+        /* Add more styling for elements here */
+    </style>
 </body>
 </html>
