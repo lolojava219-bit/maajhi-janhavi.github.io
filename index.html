@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teddy Bear Celebration</title>
+    <title>Maajhi Janhavi</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Teddy Bear Celebration!</h1>
-        <div class="teddy-bear" id="teddyBear"></div>
-        <button id="yesButton">Yes</button>
-        <p id="description">Meri teddy bear bahut pyari hai! Uska naam Tashi hai.</p>
-        <div class="gallery">
-            <!-- Gallery functionality remains intact -->
-        </div>
+    <h1>स्वागत है Maajhi Janhavi में</h1> <!-- Welcome to Maajhi Janhavi -->
+    <div id="particle-container"></div>
+    <div id="gallery">
+        <h2>गैलरी</h2> <!-- Gallery -->
+        <input type="file" id="upload" multiple />
+        <div id="photos"></div>
+    </div>
+    <div id="teddy-dance">
+        <img src="teddy_bear.gif" alt="Dancing Teddy Bear" id="teddy">
     </div>
     <script>
-        document.getElementById('yesButton').addEventListener('click', function() {
-            // Trigger animations
-            celebrateWithTeddy();
+        var particles = Particles.init({
+            selector: '#particle-container',
+            color: '#ffffff',
+            connectParticles: true,
+            responsiveness: 1,
         });
+
+        document.getElementById('upload').addEventListener('change', function(event) {
+            const photosContainer = document.getElementById('photos');
+            photosContainer.innerHTML = '';
+            for (const file of event.target.files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    photosContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Teddy bear animation logic here
+        function startTeddyDance() {
+            const teddy = document.getElementById('teddy');
+            teddy.classList.add('dance');
+        }
+        setTimeout(startTeddyDance, 1000);
     </script>
 </body>
 </html>
